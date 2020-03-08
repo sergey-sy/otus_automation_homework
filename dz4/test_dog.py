@@ -7,6 +7,7 @@ from random import randint, choice
 def get_list_all_breeds():
     return requests.get('https://dog.ceo/api/breeds/list/all').json()
 
+
 def test_get_list_all_breeds(get_list_all_breeds):
     '''
     LIST ALL BREEDS from https://dog.ceo/dog-api/documentation/
@@ -27,6 +28,7 @@ def test_get_single_random_image():
 @pytest.fixture(params=[1, 50])
 def fixture_amount_links(request):
     return request.param
+
 
 def test_get_multiple_imgages_from_breed_collection(fixture_amount_links):
     '''
