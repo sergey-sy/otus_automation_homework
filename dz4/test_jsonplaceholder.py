@@ -11,6 +11,7 @@ TMP_FILE = 'test_jsonplaceholder.json'
 
 @pytest.yield_fixture(scope='session', autouse=True)
 def make_tmp_file():
+    """Create temporary file and delete in the end of the test session"""
     with open(TMP_FILE, 'w') as f:
         pass
     yield
@@ -19,6 +20,7 @@ def make_tmp_file():
 
 @pytest.fixture(scope='module')
 def get_api_responce():
+    """Get response from API"""
     responce = requests.get(API_LINK)
     if responce.ok:
         print(responce)
@@ -30,7 +32,7 @@ def get_api_responce():
 
 
 def test_check_json_schema(get_api_responce):
-    '''Validate json-schema for https://jsonplaceholder.typicode.com/guide.html'''
+    """Validate json-schema for https://jsonplaceholder.typicode.com/guide.html"""
     schema = {
         'type': 'object',
         'properties': {
@@ -42,8 +44,7 @@ def test_check_json_schema(get_api_responce):
     }
 
     responce = get_api_responce
-    validate(responce[0], schema)
-    # if haven't validate raise exception
+    validate(responce[0], schema) # -> If schema is valid return None. If haven't validate raise exception.
     assert True
 
 

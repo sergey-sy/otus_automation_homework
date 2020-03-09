@@ -2,7 +2,6 @@ import pytest
 import requests
 import string
 from jsonschema import validate
-from random import randint
 
 
 API_LINK = 'https://api.openbrewerydb.org/breweries'
@@ -10,6 +9,7 @@ API_LINK = 'https://api.openbrewerydb.org/breweries'
 
 @pytest.fixture(scope='module')
 def get_all_breweries():
+    """Get response with breweries"""
     responce = requests.get(API_LINK)
     if responce.ok:
         return responce.json()
@@ -50,6 +50,7 @@ def test_get_list_breweries(get_all_breweries):
 
 @pytest.fixture(params=['_', '%20'])
 def fixture_with_spaces(request):
+    """Return different delimeters for spaces in browser address row"""
     return request.param
 
 
@@ -71,6 +72,7 @@ def test_filter_by_city(fixture_with_spaces, fixture_with_cities):
 
 @pytest.mark.parametrize('random_brewery_id', ['141', '44', '198', '46', '2'])
 def test_get_single_brewery(random_brewery_id):
+    """Test that api return single brewery by id"""
     print(random_brewery_id)
     responce = requests.get(API_LINK + f'/{random_brewery_id}')
     assert responce.ok
