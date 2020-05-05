@@ -131,3 +131,7 @@ dmypy.json
 #PyCharm staff
 .idea
 .idea/
+
+#mac_os
+.DS_Store
+./DS_Store
