@@ -19,7 +19,7 @@ class MyGeometricalShape:
 class MyTriangle(MyGeometricalShape):
     """
     Create triangle with 3 points. Each point have x, y, z.
-    # >>> MyTriangle((0, 10, 0), (10, 0, 0), (0, 0, 0))
+    >>> MyTriangle((0, 10, 0), (10, 0, 0), (0, 0, 0))
     """
     def __init__(self, x, y, z):
         _triangle = Geometry.Triangle(x, y, z)
@@ -46,6 +46,10 @@ class MyCircle(MyGeometricalShape):
 
 
 class MyRectangle(MyGeometricalShape):
+    """
+    Create Rectangle by sides.
+    >>> rectangle_1 = MyRectangle(2, 4)
+    """
     def __init__(self, width, height):
         _rectangle = Geometry.Rectangle(origin=None, width=width, height=height)
         super().__init__(name='rectangle',
@@ -56,57 +60,10 @@ class MyRectangle(MyGeometricalShape):
 
 
 class MySquare(MyRectangle):
+    """
+    Create Square by side.
+    >>> square_1 = MySquare(2)
+    """
     def __init__(self, width):
         super().__init__(width, height=width)
         self.name = 'square'
-
-
-def main():
-
-    triangle_1 = MyTriangle((0, 10, 0), (10, 0, 0), (0, 0, 0))
-    triangle_2 = MyTriangle((0, 20, 0), (10, 0, 0), (0, 0, 0))
-    print(triangle_1.name)
-    print(triangle_1.area)
-    print(triangle_1.angles)
-    print(triangle_1.perimeter)
-    print()
-    print(triangle_2.name)
-    print(triangle_2.area)
-    print(triangle_2.angles)
-    print(triangle_2.perimeter)
-    print()
-    print(triangle_1.add_square(triangle_2))
-
-    circle_1 = MyCircle(10)
-    print(circle_1.area)
-    print(circle_1.perimeter)
-    print(circle_1.add_square(triangle_1))
-    print()
-    rectangle_1 = MyRectangle(2, 4)
-    print(rectangle_1.name)
-    print(rectangle_1.area)
-    print(rectangle_1.angles)
-    print(rectangle_1.perimeter)
-    print()
-    square_1 = MySquare(2)
-    print(square_1.name)
-    print(square_1.area)
-    print(square_1.angles)
-    print(square_1.perimeter)
-    print(triangle_1.add_square(square_1))
-    print()
-    params = [
-        [(0, 10, 0), (10, 0, 0), (10, 10, 10)],
-        [(0, 20, 0), (10, 0, 0), (0, 0, 0)],
-        [(0, 10, 0), (10, 0, 0), (0, 0, 30)],
-        [(15, 0, 0), (0, 15, 0), (0, 0, 15)],
-        [(0, 25, 0), (15, 0, 0), (0, 0, 15)]
-    ]
-
-    for i in params:
-        _tr = MyTriangle(*i)
-        print(_tr.perimeter)
-
-
-if __name__ == '__main__':
-    main()
