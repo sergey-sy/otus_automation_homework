@@ -8,3 +8,6 @@ dz2 - introduction to pytest, make and runinig tests
 dz3 - combine and filter data from different files
 
 dz4 - API testing with parsing and parametrisation
+
+dz6 - Python OOP geometry figures and tests
+
