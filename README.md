@@ -11,3 +11,5 @@ dz4 - API testing with parsing and parametrisation
 
 dz6 - Python OOP geometry figures and tests
 
+dz8 - Selenium fixture for starting different browsers
+
