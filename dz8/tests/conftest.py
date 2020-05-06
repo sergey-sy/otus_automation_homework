@@ -3,6 +3,8 @@ from os import *
 
 import pytest
 from selenium import webdriver
+from selenium.webdriver.firefox.options import Options as FX_Options
+from selenium.webdriver.chrome.options import Options as CH_Options
 
 
 def pytest_addoption(parser):
@@ -35,15 +37,16 @@ def get_driver(request):
     )[browser]
     driver_path = path.join(drivers_dir, driver_name)
 
-    options = webdriver.ChromeOptions()
-    options.add_argument('headless')
-
     if browser == 'firefox':
-        driver = webdriver.Firefox(executable_path=driver_path, service_log_path=log_path) # options=options for headless
+        options = FX_Options()
+        options.headless = True
+        driver = webdriver.Firefox(executable_path=driver_path, service_log_path=log_path, options=options)
     elif browser == 'chrome':
-        driver = webdriver.Chrome(executable_path=driver_path, service_log_path=log_path) # options=options for headless
+        options = CH_Options()
+        options.add_argument('headless')
+        driver = webdriver.Chrome(executable_path=driver_path, service_log_path=log_path, options=options)
     elif browser == 'ie':
-        driver = webdriver.Ie(executable_path=driver_path, service_log_path=log_path) # options=options for headless
+        driver = webdriver.Ie(executable_path=driver_path, service_log_path=log_path)
 
     driver.maximize_window()
     driver.get(url)
